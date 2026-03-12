@@ -13,7 +13,7 @@ It does three things:
 Run this one-liner in your terminal:
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/hexxt-git/crossover-reset/main/crossover_reset.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/hexxt-git/crossover-free-trial-reset/main/crossover_reset.sh)
 ```
 
 Then reopen CrossOver.
@@ -23,5 +23,7 @@ Then reopen CrossOver.
 To run the reset every hour via cron:
 
 ```bash
-git clone https://github.com/hexxt-git/crossover-reset.git ~/.crossover-reset && bash ~/.crossover-reset/install_cron.sh
+git clone https://github.com/hexxt-git/crossover-free-trial-reset.git ~/.crossover-free-trial-reset && bash ~/.crossover-free-trial-reset/install_cron.sh
 ```
+
+Note: this has only been tested on CrossOver 26
