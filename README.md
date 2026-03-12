@@ -17,3 +17,11 @@ bash <(curl -fsSL https://raw.githubusercontent.com/hexxt-git/crossover-reset/ma
 ```
 
 Then reopen CrossOver.
+
+## Automatic reset (cron)
+
+To run the reset every hour via cron:
+
+```bash
+git clone https://github.com/hexxt-git/crossover-reset.git ~/.crossover-reset && bash ~/.crossover-reset/install_cron.sh
+```
