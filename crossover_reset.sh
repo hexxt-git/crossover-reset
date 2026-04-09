@@ -3,7 +3,11 @@
 # --- Paths ---
 PLIST_DOMAIN="com.codeweavers.CrossOver"
 PLIST_PATH="$HOME/Library/Preferences/com.codeweavers.CrossOver.plist"
-BOTTLES_DIR="$HOME/Library/Application Support/CrossOver/bottles"
+BOTTLES_DIR="$HOME/Library/Application Support/CrossOver/Bottles"
+# Fallback to lowercase if capitalized doesn't exist
+if [ ! -d "$BOTTLES_DIR" ]; then
+    BOTTLES_DIR="$HOME/Library/Application Support/CrossOver/bottles"
+fi
 
 echo "--- CrossOver Maintenance Started ---"
 
@@ -29,8 +33,8 @@ if [ -d "$BOTTLES_DIR" ]; then
     find "$BOTTLES_DIR" -name "system.reg" | while read -r reg_file; do
         bottle_name=$(basename "$(dirname "$reg_file")")
         
-        # Check if the pattern exists before trying to replace it
-        if grep -qi "\[Software\\\\CodeWeavers\\\\CrossOver\\\\cxoffice\]" "$reg_file"; then
+        # Check if the pattern exists before trying to replace it (broad match)
+        if grep -qi "Software.*CodeWeavers.*CrossOver.*cxoffice" "$reg_file"; then
             # Perform the multi-line deletion
             perl -i -0777 -pe 's/^\[Software\\+CodeWeavers\\+CrossOver\\+cxoffice\].*?(\n\n|(?=\n\[)|$)/ /gmi' "$reg_file"
             echo "✅ Cleaned expiration block from bottle: $bottle_name"
